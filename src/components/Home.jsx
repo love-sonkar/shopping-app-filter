@@ -15,7 +15,7 @@ const Home = () => {
     }
     if (sort) {
       FilteringProducts = FilteringProducts.sort((a, b) =>
-        sort === "High_to_low" ? a.price - b.price : b.price - a.price
+        sort === "High_to_low" ? b.price - a.price : a.price - b.price
       );
     }
     if (rating) {
