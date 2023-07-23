@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useEffect, useReducer } from "react";
-import Reducers from "./Reducers";
+import React, { createContext, useContext, useReducer } from "react";
+import { Reducers, FilterReducer } from "./Reducers";
 import { faker } from "@faker-js/faker";
 
 const ContextApi = createContext();
@@ -20,8 +20,16 @@ const ContextApiHook = ({ children }) => {
     products: products,
   });
 
+  const [filterstate, filterdispatch] = useReducer(FilterReducer, {
+    fastdelivery: false,
+    rating: 0,
+    searchquery: "",
+  });
+
   return (
-    <ContextApi.Provider value={{ state, dispatch }}>
+    <ContextApi.Provider
+      value={{ state, dispatch, filterstate, filterdispatch }}
+    >
       {children}
     </ContextApi.Provider>
   );
